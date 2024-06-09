@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: TODO</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main>
+        <h1>TODO List Demo App</h1>
+        <p><mark>do it now.</mark></p>
+    </main>
+    <div class="container-table">
+        <div class="bouton-AddTask">
+            <button 
+             type="button"
+             class="btn-add-Task"
+             onclick="openModal()"
+            >
+             Add Task
+            </button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="task-id">#</th>
+                    <th class="task">Task Name</th>
+                    <th class="status">Status</th>
+                    <th class="update">Edit</th>
+                    <th class="up">Remove</th>
+                </tr>
+            </thead>
+            <tbody id="task-list">
+            </tbody>
+        </table>
+    </div>
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Add New Task</h2>
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name">
+            <button onclick="submitTask()">Submit</button>
+        </div>
+    </div>
+
+    <script src="/javascript/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

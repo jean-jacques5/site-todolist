@@ -1,7 +1,9 @@
 let taskId = 1;
+let editTaskId = null;
 
 function openModal() {
     document.getElementById('task-modal').style.display = 'block';
+    document.getElementById('task-name').focus();
 }
 
 function closeModal() {
@@ -12,20 +14,23 @@ function submitTask() {
     const taskName = document.getElementById('task-name').value.trim();
 
     if (taskName === '') {
-        alert('Veuiller ecrire une tache');
+        alert('Task cannot be empty!');
         return;
     }
 
     const taskList = document.getElementById('task-list');
+
+
+    document.getElementById('no-tasks-message').style.display = 'none';
 
     const row = document.createElement('tr');
     row.setAttribute('data-id', taskId);
 
     row.innerHTML = `
         <td>${taskId}</td>
-        <td>${taskName}</td>
+        <td class="task-name">${taskName}</td>
         <td><button class="Todo" onclick="changeStatus(this)">Todo</button></td>
-        <td><button class="Edit" onclick="editTask(${taskId})"><ion-icon name="pencil-outline"></ion-icon></button></td>
+        <td><button class="Edit" onclick="openEditModal(${taskId})"><ion-icon name="pencil-outline"></ion-icon></button></td>
         <td><button class="remove" onclick="removeTask(${taskId})"><ion-icon name="trash-bin-outline"></ion-icon></button></td>
     `;
 
@@ -36,11 +41,23 @@ function submitTask() {
     taskId++;
 }
 
+function removeTask(id) {
+    const taskList = document.getElementById('task-list');
+    const taskRow = document.querySelector(`tr[data-id="${id}"]`);
+    
+    taskList.removeChild(taskRow);
+
+    if (taskList.children.length === 1) {  
+        document.getElementById('no-tasks-message').style.display = '';
+    }
+}
+
 function changeStatus(button) {
-    if (button.innerText === 'Todo') {
+    const status = button.innerText;
+    if (status === 'Todo') {
         button.innerText = 'In Progress';
         button.className = 'Progress';
-    } else if (button.innerText === 'In Progress') {
+    } else if (status === 'In Progress') {
         button.innerText = 'Complete';
         button.className = 'Complete';
     } else {
@@ -49,15 +66,42 @@ function changeStatus(button) {
     }
 }
 
-function editTask(id) {
-    const taskName = prompt('Edit your task:');
-    if (taskName) {
-        const row = document.querySelector(`tr[data-id='${id}']`);
-        row.children[1].innerText = taskName;
+function openEditModal(id) {
+    editTaskId = id;
+    const taskRow = document.querySelector(`tr[data-id="${id}"]`);
+    const taskName = taskRow.querySelector('.task-name').innerText;
+
+    document.getElementById('edit-task-name').value = taskName;
+    document.getElementById('edit-modal').style.display = 'block';
+    document.getElementById('edit-task-name').focus();
+}
+
+function closeEditModal() {
+    document.getElementById('edit-modal').style.display = 'none';
+}
+
+function submitEditTask() {
+    const newTaskName = document.getElementById('edit-task-name').value.trim();
+
+    if (newTaskName === '') {
+        alert('Task cannot be empty!');
+        return;
+    }
+
+    const taskRow = document.querySelector(`tr[data-id="${editTaskId}"]`);
+    taskRow.querySelector('.task-name').innerText = newTaskName;
+
+    closeEditModal();
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        submitTask();
     }
 }
 
-function removeTask(id) {
-    const row = document.querySelector(`tr[data-id='${id}']`);
-    row.remove();
+function handleEditKeyDown(event) {
+    if (event.key === 'Enter') {
+        submitEditTask();
+    }
 }

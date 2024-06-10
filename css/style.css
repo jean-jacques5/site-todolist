@@ -191,6 +191,7 @@ td{
 }
 
 .modal-content {
+  text-align: center;
   background-color: #fefefe;
   margin: 5% auto;
   padding: 20px;
@@ -211,4 +212,5 @@ td{
   text-decoration: none;
   cursor: pointer;
 }
+
 

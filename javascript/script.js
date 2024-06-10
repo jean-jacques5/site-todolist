@@ -1,5 +1,6 @@
 let taskId = 1;
 let editTaskId = null;
+let removeTaskId = null;
 
 function openModal() {
     document.getElementById('task-modal').style.display = 'block';
@@ -19,8 +20,6 @@ function submitTask() {
     }
 
     const taskList = document.getElementById('task-list');
-
-
     document.getElementById('no-tasks-message').style.display = 'none';
 
     const row = document.createElement('tr');
@@ -31,7 +30,7 @@ function submitTask() {
         <td class="task-name">${taskName}</td>
         <td><button class="Todo" onclick="changeStatus(this)">Todo</button></td>
         <td><button class="Edit" onclick="openEditModal(${taskId})"><ion-icon name="pencil-outline"></ion-icon></button></td>
-        <td><button class="remove" onclick="removeTask(${taskId})"><ion-icon name="trash-bin-outline"></ion-icon></button></td>
+        <td><button class="remove" onclick="openRemoveModal(${taskId})"><ion-icon name="trash-bin-outline"></ion-icon></button></td>
     `;
 
     taskList.appendChild(row);
@@ -41,16 +40,26 @@ function submitTask() {
     taskId++;
 }
 
-function removeTask(id) {
+function openRemoveModal(id) {
+    removeTaskId = id;
+    document.getElementById('remove-modal').style.display = 'block';
+}
+
+function closeRemoveModal() {
+    document.getElementById('remove-modal').style.display = 'none';
+}
+
+document.getElementById('confirm-remove-button').onclick = function() {
     const taskList = document.getElementById('task-list');
-    const taskRow = document.querySelector(`tr[data-id="${id}"]`);
+    const taskRow = document.querySelector(`tr[data-id="${removeTaskId}"]`);
     
     taskList.removeChild(taskRow);
 
-    if (taskList.children.length === 1) {  
+    if (taskList.children.length === 1) {
         document.getElementById('no-tasks-message').style.display = '';
     }
-}
+    closeRemoveModal();
+};
 
 function changeStatus(button) {
     const status = button.innerText;

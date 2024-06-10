@@ -39,16 +39,26 @@
                 <h2>Add New Task</h2>
                 <label for="task-name">Task Name:</label>
                 <input type="text" id="task-name" onkeydown="handleKeyDown(event)" />
-                <button id="submit-task-button" onclick="submitTask()">Valider</button>
+                <button class="bouton-Valider" id="submit-task-button" onclick="submitTask()">Save</button>
             </div>
         </div>
+
         <div id="edit-modal" class="modal" style="display: none">
             <div class="modal-content">
                 <span class="close" onclick="closeEditModal()">&times;</span>
                 <h2>Edit Task</h2>
                 <label for="edit-task-name">Task Name:</label>
                 <input type="text" id="edit-task-name" onkeydown="handleEditKeyDown(event)" />
-                <button id="submit-edit-button" onclick="submitEditTask()">Save</button>
+                <button class="bouton-Valider" id="submit-edit-button" onclick="submitEditTask()">Save</button>
+            </div>
+        </div>
+
+        <div id="remove-modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <span class="close" onclick="closeRemoveModal()">&times;</span>
+                <h2>Êtes-vous sûr de vouloir supprimer ?</h2>
+                <button class="bouton-Valider-non" id="confirm-remove-button">Oui</button>
+                <button class="bouton-Valider-annuler" onclick="closeRemoveModal()">Non</button>
             </div>
         </div>
 

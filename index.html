@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo: TODO</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <main>
-        <h1>TODO List Demo App</h1>
-        <p><mark>do it now.</mark></p>
-    </main>
-    <div class="container-table">
-        <div class="bouton-AddTask">
-            <button 
-             type="button"
-             class="btn-add-Task"
-             onclick="openModal()"
-            >
-             Add Task
-            </button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Demo: TODO</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <main>
+            <h1>TODO List Demo App</h1>
+            <p><mark>do it now.</mark></p>
+        </main>
+        <div class="container-table">
+            <div class="bouton-AddTask">
+                <button type="button" class="btn-add-Task" onclick="openModal()">Add Task</button>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="task-id">#</th>
+                        <th class="task">Task Name</th>
+                        <th class="status">Status</th>
+                        <th class="update">Edit</th>
+                        <th class="up">Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="task-list">
+                    <tr id="no-tasks-message">
+                        <td colspan="5">Vous n'avez aucune action pour le moment</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="task-id">#</th>
-                    <th class="task">Task Name</th>
-                    <th class="status">Status</th>
-                    <th class="update">Edit</th>
-                    <th class="up">Remove</th>
-                </tr>
-            </thead>
-            <tbody id="task-list">
-                <tr id="no-tasks-message">
-                    <td colspan="5">Vous n'avez aucune action pour le moment</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
-    <div id="task-modal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Add New Task</h2>
-            <label for="task-name">Task Name:</label>
-            <input type="text" id="task-name" onkeydown="handleKeyDown(event)">
-            <button id="submit-task-button" onclick="submitTask()">Valider</button>
+        <div id="task-modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Add New Task</h2>
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" onkeydown="handleKeyDown(event)" />
+                <button id="submit-task-button" onclick="submitTask()">Valider</button>
+            </div>
         </div>
-    </div>
-    <div id="edit-modal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditModal()">&times;</span>
-            <h2>Edit Task</h2>
-            <label for="edit-task-name">Task Name:</label>
-            <input type="text" id="edit-task-name" onkeydown="handleEditKeyDown(event)">
-            <button id="submit-edit-button" onclick="submitEditTask()">Save</button>
+        <div id="edit-modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>Edit Task</h2>
+                <label for="edit-task-name">Task Name:</label>
+                <input type="text" id="edit-task-name" onkeydown="handleEditKeyDown(event)" />
+                <button id="submit-edit-button" onclick="submitEditTask()">Save</button>
+            </div>
         </div>
-    </div>
 
-    <script src="/javascript/script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
+        <script src="./javascript/script.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>

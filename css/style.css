@@ -1,6 +1,7 @@
 body{
   font-family: Arial, sans-serif;
   margin-inline: 20%;
+  background-color: whitesmoke;
 }
 main h1{
   font-size: 2em;
@@ -148,6 +149,9 @@ main p mark{
   border-radius: 3px;
   color: black;
   border-color: green;
+}
+.Complete:active{
+  opacity: 0.5;
 }
 .container-table{
   display: flex;
